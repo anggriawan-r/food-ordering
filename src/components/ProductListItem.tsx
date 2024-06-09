@@ -1,6 +1,7 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, Pressable, StyleSheet, Text } from 'react-native';
 import Colors from '@/constants/Colors';
 import { Product } from '../types';
+import { Link, router } from 'expo-router';
 
 export const defaultPizzaImage =
   'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png';
@@ -21,7 +22,8 @@ const ProductListItem = ({
   const WIDTH = Dimensions.get('window').width;
 
   return (
-    <View
+    <Pressable
+      onPress={() => router.push(`/menu/${product.id}`)}
       style={[
         styles.container,
         {
@@ -36,7 +38,7 @@ const ProductListItem = ({
       />
       <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
-    </View>
+    </Pressable>
   );
 };
 
