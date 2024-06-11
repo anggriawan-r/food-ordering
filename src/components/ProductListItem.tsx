@@ -1,7 +1,7 @@
 import { Dimensions, Image, Pressable, StyleSheet, Text } from 'react-native';
 import Colors from '@/constants/Colors';
 import { Product } from '../types';
-import { Link, router } from 'expo-router';
+import { Link, router, useSegments } from 'expo-router';
 
 export const defaultPizzaImage =
   'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png';
@@ -20,10 +20,11 @@ const ProductListItem = ({
   numColumns,
 }: ProductListItemProps) => {
   const WIDTH = Dimensions.get('window').width;
+  const segments = useSegments();
 
   return (
     <Pressable
-      onPress={() => router.push(`/menu/${product.id}`)}
+      onPress={() => router.push(`/${segments[0]}/menu/${product.id}`)}
       style={[
         styles.container,
         {
